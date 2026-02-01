@@ -12,13 +12,14 @@ import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import { API_BASE } from "@/lib/api";
 
 const Hero = () => {
   const [user, setUser] = useState({});
   useEffect(() => {
     const getMyProfile = async () => {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/user/me/portfolio",
+        `${API_BASE}/api/v1/user/me/portfolio`,
         { withCredentials: true }
       );
       setUser(data.user);

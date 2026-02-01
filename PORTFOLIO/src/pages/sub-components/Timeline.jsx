@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { API_BASE } from "@/lib/api";
 
 const Timeline = () => {
   const [timeline, setTimeline] = useState([]);
   useEffect(() => {
     const getMyTimeline = async () => {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/timeline/getall",
+        `${API_BASE}/api/v1/timeline/getall`,
         { withCredentials: true }
       );
       setTimeline(data.timelines);
@@ -15,7 +16,7 @@ const Timeline = () => {
   }, []);
   return (
     <div>
-    <h1 className="overflow-x-hidden text-[2rem] sm:text-[1.75rem] md:text-[2.2rem] lg:text-[2.8rem] mb-4 font-extrabold">Timeline</h1>
+      <h1 className="overflow-x-hidden text-[2rem] sm:text-[1.75rem] md:text-[2.2rem] lg:text-[2.8rem] mb-4 font-extrabold">Timeline</h1>
       <ol className="relative border-s border-gray-200 dark:border-gray-700">
         {timeline &&
           timeline.map((element) => {
